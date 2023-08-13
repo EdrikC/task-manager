@@ -10,8 +10,12 @@
     <div>
         {% include 'nav.html' %}
     </div>
-    <div>
-        {% include 'mainpg.html' %}
+    <div style="margin-left: 50px; margin-top: 10px;">
+            {% for t in tsk %}
+            <div><h1>{{t['title']}}</h1></div>
+        <div><b> Description: </b>{{t['the_task']}}</div>
+        <div><b> Priority: </b>{{t['priority']}}</div>
+            {% endfor %}
     </div>
 </body>
 </html>
