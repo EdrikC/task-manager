@@ -10,12 +10,17 @@
     <div>
         {% include 'nav.html' %}
     </div>
-    <div style="margin-left: 50px; margin-top: 10px;">
+
+    <div class="container" style="margin-left: 50px; margin-top: 100px;">
             {% for t in tsk %}
-            <div><h1>{{t['title']}}</h1></div>
+            <div><b>Task: </b>{{t['title']}}</div>
         <div><b> Description: </b>{{t['the_task']}}</div>
         <div><b> Priority: </b>{{t['priority']}}</div>
+        <hr style="color: rgb(0, 0, 0);">
+
+        <button type="button" class="btn btn-outline-danger">Delete</button>
             {% endfor %}
     </div>
+
 </body>
 </html>
