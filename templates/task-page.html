@@ -10,16 +10,40 @@
     <div>
         {% include 'nav.html' %}
     </div>
-
-    <div class="container" style="margin-left: 50px; margin-top: 100px;">
-            {% for t in tsk %}
-            <div><b>Task: </b>{{t['title']}}</div>
-        <div><b> Description: </b>{{t['the_task']}}</div>
-        <div><b> Priority: </b>{{t['priority']}}</div>
+    <div style="margin-left: 50px; margin-right:50px;">
+        <h1 class="font-monospace" style="font-size:50px;">
+            Task Page
+        </h1>
         <hr style="color: rgb(0, 0, 0);">
+    </div>
 
-        <button type="button" class="btn btn-outline-danger">Delete</button>
-            {% endfor %}
+    <div class="table-responsive-md text-wrap" style="margin-left: 50px; margin-top: 50px; margin-right: 50px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="font-monospace lead">ID</th>
+              <th scope="col" class="font-monospace lead">Task</th>
+              <th scope="col" class="font-monospace lead">Description</th>
+              <th scope="col" class="font-monospace lead">Priority</th>
+              <th scope="col" class="font-monospace lead">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for t in tsk %}
+            <tr>
+              <th scope="row">{{t['id']}}</th>
+              <td class="font-monospace lead">{{t['title']}}</td>
+              <td class="font-monospace">{{t['the_task']}}</td>
+              <td class="font-monospace">{{t['priority']}}</td>
+              <td><form action="/delete_entry" method="post">
+    <input type="hidden" name="entry_id" value="{{ t['id'] }}">
+    <button type="submit" class="btn btn-outline-danger font-monospace">Delete</button>
+</form>
+</td>
+                {% endfor %}
+            </tr>
+          </tbody>
+        </table>
     </div>
 
 </body>

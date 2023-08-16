@@ -40,4 +40,6 @@ def del_task(id):
         result = conn.execute(text("DELETE * FROM tasks WHERE id = :val"), parameters=dict(val=id))
         rows = result.all()
         if len(rows) >= 0:
-            return result
+            return rows[0]._mapping
+        else:
+            return None

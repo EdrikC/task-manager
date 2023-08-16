@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify
-from database import load_tasks, load_job_from_db
+from flask import Flask, render_template
+from database import load_tasks, del_task
 
 
 app = Flask(__name__)
@@ -13,6 +13,11 @@ def main_page():
 @app.route('/task-page')
 def add_task():
     return render_template('task-page.html', tsk=load_tasks())
+
+
+@app.route('/task-page')
+def delete_task(id):
+    return render_template('task-page.html', tsk=del_task(id))
 
 
 if __name__ == "__main__":
