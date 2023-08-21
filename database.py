@@ -37,9 +37,13 @@ def load_job_from_db(id):
 
 def del_task(id):
     with engine.connect() as conn:
-        result = conn.execute(text("DELETE * FROM tasks WHERE id = :val"), parameters=dict(val=id))
-        rows = result.all()
-        if len(rows) >= 0:
-            return rows[0]._mapping
-        else:
+        result = conn.execute(text("DELETE FROM tasks WHERE id = :val"), parameters=dict(val=id))
+        if result.rowcount == 0:
             return None
+
+
+def task_to_db(data):
+    with engine.connect() as conn:
+        query = text("INSERT INTO tasks (title, the_task, priority) VALUES (:title, :desc, :priority)")
+        conn.execute(query, parameters=dict(title=data['title'], desc=data['the_task'], priority=data['Priority']))
+
