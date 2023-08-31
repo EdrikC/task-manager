@@ -1,0 +1,30 @@
+<html lang="en">
+  <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/login" method="post">
+            <label class="col-form-label">Username:</label>
+            <div class=" input-group mb-3">
+              <span class="input-group-text" id="usrnme">@</span>
+              <input type="text" class="form-control" aria-label="username" name="lnusername" required maxlength="15">
+            </div>
+            <label class="col-form-label">Password:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="pswd">&#x1F512;</span>
+              <input type="password" class="form-control" aria-label="password" name="lnpswd" required maxlength="15">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <input class="btn btn-primary" type="submit" value="Confirm">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

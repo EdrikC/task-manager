@@ -2,23 +2,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: Lavender;">
-        <h1 class="modal-title fs-5 font-monospace" id="exampleModalLabel">New Task</h1>
+        <h1 class="modal-title fs-5 font-monospace" id="formlabel">New Task</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="background-color: Lavender;">
         <form action="/task-page/confirmed" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label font-monospace">Title:</label>
-            <input type="text" class="form-control" id="recipient-name" name="title" placeholder="e.g. Study for Calc final">
+            <input type="text" class="form-control" id="recipient-name" name="title" placeholder="e.g. Study for Calc final" required maxlength="250">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label font-monospace">Description:</label>
-            <textarea class="form-control" id="message-text" name="the_task" placeholder="e.g. Study sections 1, 2, and 3."></textarea>
+            <textarea class="form-control" id="message-text" name="the_task" placeholder="e.g. Study sections 1, 2, and 3." required maxlength="1000"></textarea>
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label font-monospace">Priority:</label>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Priority" id="inlineRadio1" value="1">
+              <input class="form-check-input" type="radio" name="Priority" id="inlineRadio1" value="1" required>
               <label class="form-check-label" for="inlineRadio1">1</label>
             </div>
             <div class="form-check form-check-inline">

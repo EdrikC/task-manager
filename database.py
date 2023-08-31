@@ -2,7 +2,6 @@ from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
 db_connect_string = os.getenv('DB_STR')
 
@@ -15,9 +14,10 @@ engine = create_engine(db_connect_string, connect_args={
 })
 
 
-def load_tasks():
+# Loads the tasks rendered in task-page.html given the user's id. (Returned as a list of dicts)
+def load_tasks(ui):
     with engine.connect() as conn:
-        result = conn.execute(text("select * from tasks"))
+        result = conn.execute(text("select * from tasks where ui = :ui"), parameters=dict(ui=ui))
         ls_tasks = []
         for row in result:
             row_as_dict = row._mapping
@@ -25,7 +25,8 @@ def load_tasks():
         return ls_tasks
 
 
-def load_job_from_db(id):
+# Returns a task identified by its ID. Return type dict.
+def load_task_from_db(id):
     with engine.connect() as conn:
         result = conn.execute(text("SELECT * FROM tasks WHERE id = :val"), parameters=dict(val=id))
         rows = result.all()
@@ -35,6 +36,7 @@ def load_job_from_db(id):
             return rows[0]._mapping
 
 
+# Deletes a task given its ID
 def del_task(id):
     with engine.connect() as conn:
         result = conn.execute(text("DELETE FROM tasks WHERE id = :val"), parameters=dict(val=id))
@@ -42,8 +44,54 @@ def del_task(id):
             return None
 
 
-def task_to_db(data):
+# Inserts a task given 'data' (via the HTML form in addnew.html)
+def task_to_db(data, ui):
     with engine.connect() as conn:
-        query = text("INSERT INTO tasks (title, the_task, priority) VALUES (:title, :desc, :priority)")
-        conn.execute(query, parameters=dict(title=data['title'], desc=data['the_task'], priority=data['Priority']))
+        query = text("INSERT INTO tasks (title, the_task, priority, ui) VALUES (:title, :desc, :priority, :ui)")
+        conn.execute(query, parameters=dict(title=data['title'], desc=data['the_task'], priority=data['Priority'],
+                                            ui=ui))
 
+
+# Adds new user and stores in database.
+def new_user(username, hash_pswd):
+    with engine.connect() as conn:
+        query = text("INSERT INTO users (username, pswd) VALUES (:usr, :pwd)")
+        conn.execute(query, parameters=dict(usr=username, pwd=hash_pswd))
+
+
+# Retrieve a User Object given it's username
+def get_userinfo_by_username(username):
+    with engine.connect() as conn:
+        query = text("SELECT * FROM users WHERE username = :un")
+        result = conn.execute(query, parameters=dict(un=username))
+        row = result.fetchone()
+        if row:
+            return dict(row._mapping)
+        else:
+            return None
+
+
+# Function to check for duplicate user IDs; returns bool
+def id_is_unique(username):
+    with engine.connect() as conn:
+        query = text("SELECT * FROM users WHERE username = :usrnme")
+        result = conn.execute(query, parameters=dict(usrnme=username))
+        return result.rowcount == 0
+
+
+# Returns the ID # given a username as a str.
+def get_userid_from_username(username):
+    with engine.connect() as conn:
+        query = text("SELECT id FROM users WHERE username = :usrnme")
+        result = conn.execute(query, parameters=dict(usrnme=username))
+        return str(result.fetchone())
+
+
+# def get_hash_password_from_db(username):
+#     with engine.connect() as conn:
+#         query = text("SELECT pswd FROM users WHERE username = :u")
+#         result = conn.execute(query, parameters=dict(u=username))
+#         return str(result.fetchone())
+
+
+# print((get_userinfo_by_username('mr test')))

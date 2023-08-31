@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="font-monospace" style="font-size:50px;">
-                Task Page
+                Welcome to your Task Page, {{current_user.get_id()}}
                 </h1>
             </div>
             <div class="col-2">
@@ -29,7 +29,8 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" class="font-monospace lead">ID</th>
+              <th scope="col" class="font-monospace lead">ID
+              </th>
               <th scope="col" class="font-monospace lead">Task</th>
               <th scope="col" class="font-monospace lead">Description</th>
               <th scope="col" class="font-monospace lead">Priority</th>
@@ -43,6 +44,7 @@
               <td class="font-monospace lead">{{t['title']}}</td>
               <td class="font-monospace text-wrap">{{t['the_task']}}</td>
               <td class="font-monospace">{{t['priority']}}</td>
+                <td class="font-monospace">{{t['ui']}}</td>
               <td>
                   <form action="/task-page/del" method="post">
                     <input type="hidden" name="id" value="{{ t['id'] }}">

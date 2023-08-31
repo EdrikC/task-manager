@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="modal fade" id="newusermodal" tabindex="-1" aria-labelledby="newusermodal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="newusermodaltitle">Sign Up</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method="post">
+              <label class="col-form-label">Username:</label>
+            <div class=" input-group mb-3">
+              <span class="input-group-text" id="newusrnme">@</span>
+              <input type="text" class="form-control" placeholder="Max 15 characters." aria-label="username" name="username" maxlength="15" required>
+            </div>
+              <label class="col-form-label">Password:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="newpswd">&#x1F512;</span>
+              <input type="password" class="form-control" placeholder="Max 15 characters." aria-label="password" name="pswd" maxlength="15" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <input class="btn btn-primary" type="submit" value="Confirm">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
