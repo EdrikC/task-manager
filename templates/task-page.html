@@ -8,44 +8,41 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     {% include 'addnew.html' %}
 </head>
-<body style=" background-color: BlanchedAlmond;">
+<body style="background-image: url(static/task-page-bg.jpg); background-size: cover; background-attachment: fixed;">
     <div>
         {% include 'nav.html' %}
     </div>
     <div class="container" style="margin-left: 50px; margin-right:50px;">
         <div class="row">
             <div class="col-10">
-                <h1 class="font-monospace" style="font-size:50px;">
-                Welcome to your Task Page, {{current_user.get_id()}}
+                <h1 class="display-1" style="font-size:60px; color: oldlace;">
+                Welcome to your Task Page, {{current_user.get_username()}}
                 </h1>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-outline-dark font-monospace btn-lg" data-bs-toggle="modal" data-bs-target="#addnewform">New Task</button>
+                <button type="button" class="btn btn-outline-light lead btn-lg" data-bs-toggle="modal" data-bs-target="#addnewform">New Task</button>
             </div>
         </div>
-        <hr style="color: rgb(0, 0, 0);">
+        <hr style="color: oldlace; margin-top:75px;">
     </div>
     <div class="table-responsive-md text-wrap" style="margin-left: 50px; margin-top: 50px; margin-right: 50px;">
-        <table class="table">
+        <table class="table table-bordered border-dark">
           <thead>
             <tr>
-              <th scope="col" class="font-monospace lead">ID
               </th>
-              <th scope="col" class="font-monospace lead">Task</th>
-              <th scope="col" class="font-monospace lead">Description</th>
-              <th scope="col" class="font-monospace lead">Priority</th>
-              <th scope="col" class="font-monospace lead">Delete</th>
+              <th scope="col" class="lead fw-semibold">Title</th>
+              <th scope="col" class="lead fw-semibold">Description</th>
+              <th scope="col" class="lead fw-semibold text-center">Priority</th>
+              <th scope="col" class="lead fw-semibold text-center">Delete</th>
             </tr>
           </thead>
           <tbody>
           {% for t in tsk %}
             <tr>
-              <th scope="row">{{t['id']}}</th>
-              <td class="font-monospace lead">{{t['title']}}</td>
-              <td class="font-monospace text-wrap">{{t['the_task']}}</td>
-              <td class="font-monospace">{{t['priority']}}</td>
-                <td class="font-monospace">{{t['ui']}}</td>
-              <td>
+              <td class="lead">{{t['title']}}</td>
+              <td class="lead text-wrap fw-lighter">{{t['the_task']}}</td>
+              <td class="lead fw-lighter text-center">{{t['priority']}}</td>
+              <td class="text-center">
                   <form action="/task-page/del" method="post">
                     <input type="hidden" name="id" value="{{ t['id'] }}">
                     <button type="submit" class="btn btn-outline-danger font-monospace">Delete</button>

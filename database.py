@@ -87,11 +87,12 @@ def get_userid_from_username(username):
         return str(result.fetchone())
 
 
-# def get_hash_password_from_db(username):
-#     with engine.connect() as conn:
-#         query = text("SELECT pswd FROM users WHERE username = :u")
-#         result = conn.execute(query, parameters=dict(u=username))
-#         return str(result.fetchone())
+def get_username_from_id(id):
+    with engine.connect() as conn:
+        query = text("SELECT username FROM users WHERE id = :id")
+        result = conn.execute(query, parameters=dict(id=id))
+        name = result.fetchone()
+        return str(name[0])
 
 
-# print((get_userinfo_by_username('mr test')))
+# print(type(get_username_from_id('1')))

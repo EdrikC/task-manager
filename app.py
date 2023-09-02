@@ -1,18 +1,18 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import secrets
 from database import load_tasks, task_to_db, del_task, new_user, id_is_unique, \
-    get_userid_from_username, get_userinfo_by_username
+    get_userinfo_by_username, get_username_from_id
 from flask_login import LoginManager, login_user, login_required, UserMixin, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
 login_manager = LoginManager(app)
 
 
 class User(UserMixin):
-    def __init__(self, id):
+    def __init__(self, id, username):
         self.id = id
+        self.username = username
 
     def is_authenticated(self):
         return True
@@ -26,11 +26,15 @@ class User(UserMixin):
     def get_id(self):
         return str(self.id)
 
+    def get_username(self):
+        return str(self.username)
+
 
 @login_manager.user_loader
 def load_user(user_id):
+    user_info = get_username_from_id(user_id)
     if user_id:
-        user = User(id=user_id)
+        user = User(id=user_id, username=user_info)
         return user
     return None  # Return None if the user is not found
 
@@ -46,7 +50,7 @@ def sign_up():
         if id_is_unique(username):
             new_user(username, hash_pswd)  # Adds the user's username and (hashed) pswd to DB.
             user_info = get_userinfo_by_username(username)  # Gets the users ID and username from DB.
-            user = User(id=user_info['id'])  # Creates the User object.
+            user = User(id=user_info['id'], username=user_info['username'])  # Creates the User object.
             login_user(user)  # Logs the user in.
             return redirect(url_for('task_page'))
         else:
@@ -68,7 +72,7 @@ def log_in():
         user_info = get_userinfo_by_username(username)
         if user_info is not None:
             hash_pass = user_info['pswd']
-            user = User(user_info['id'])
+            user = User(user_info['id'], username=user_info['username'])
             if check_password_hash(pwhash=hash_pass, password=pswd):
                 login_user(user)
                 return redirect(url_for('task_page'))
@@ -84,6 +88,7 @@ def log_in():
 @login_required
 def log_out():
     logout_user()
+    flash("Logged out successfully", "info")
     return redirect(url_for('main_page'))
 
 
@@ -117,7 +122,9 @@ def delete_task():
     data = request.form
     tsk_id = data.get('id')
     del_task(tsk_id)
-    return render_template('task-page.html', tsk=load_tasks())
+    user_id = current_user.get_id()
+    tasks = load_tasks(user_id)
+    return render_template('task-page.html', tsk=tasks)
 
 
 if __name__ == "__main__":

@@ -3,29 +3,33 @@
   {% include 'loginmodal.html' %}
   {% include 'newusermodal.html' %}
 </head>
-<nav class="navbar navbar-expand-lg shadow p-3 mb-5" style="background-color: Honeydew;">
+<nav class="navbar navbar-expand-lg shadow p-3 mb-5" style="background-color: transparent;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">"Logo"</a>
+    <a class="navbar-brand" href="/">
+      <img src="static/logo.png" class="img-thumbnail d-inline-block align-text-top" width="50" height="50">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+<!--          <a class="nav-link" href="/">Home</a>-->
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/task-page">Task Page</a>
+          {% if current_user.is_authenticated %}
+        <li class="nav-item lead">
+          <a type="submit" class="btn btn-outline-light" href="/task-page">Task Page</a>
         </li>
+          {% endif %}
       </ul>
       {% if not current_user.is_authenticated %}
-      <button type="button" class="btn btn-outline-dark font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</button>
+      <button type="button" class="btn btn-outline-light font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</button>
        {% endif %}
         <form action="/logout" method="POST">
           {% if current_user.is_authenticated %}
-             <button type="submit" class="btn btn-outline-dark font-monospace" style="margin-right: 20px;"  >Log Out</button>
+             <button type="submit" class="btn btn-outline-light font-monospace" style="margin-right: 20px;">Log Out</button>
           {% else %}
-             <button type="button" class="btn btn-outline-dark font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#newusermodal">Sign Up</button>
+             <button type="button" class="btn btn-outline-light font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#newusermodal">Sign Up</button>
           {% endif %}
         </form>
     </div>

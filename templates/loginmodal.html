@@ -1,26 +1,28 @@
 <html lang="en">
   <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background-image: url(static/bg-purple.png); background-size: cover; background-attachment: local;">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: oldlace;">Login</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="/login" method="post">
-            <label class="col-form-label">Username:</label>
+            <label class="col-form-label lead" style="color: oldlace;">Username:</label>
             <div class=" input-group mb-3">
               <span class="input-group-text" id="usrnme">@</span>
-              <input type="text" class="form-control" aria-label="username" name="lnusername" required maxlength="15">
+              <input type="text" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"
+                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" aria-label="username" name="lnusername" required maxlength="15">
             </div>
-            <label class="col-form-label">Password:</label>
+            <label class="col-form-label lead" style="color: oldlace;">Password:</label>
             <div class="input-group mb-3">
               <span class="input-group-text" id="pswd">&#x1F512;</span>
-              <input type="password" class="form-control" aria-label="password" name="lnpswd" required maxlength="15">
+              <input type="password" class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none" aria-label="password"
+                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" name="lnpswd" required maxlength="15">
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <input class="btn btn-primary" type="submit" value="Confirm">
+            <div class="modal-footer mt-5">
+              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+              <input class="btn btn-light" type="submit" value="Confirm">
             </div>
           </form>
         </div>
