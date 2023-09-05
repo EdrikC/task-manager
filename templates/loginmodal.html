@@ -1,27 +1,29 @@
 <html lang="en">
   <div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="loginmodal" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content" style="background-image: url(static/bg-purple.png); background-size: cover; background-attachment: local;">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: oldlace;">Login</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-content" style="background-image: url(static/bg-purple.png); background-size: cover; background-attachment: local; padding:15px;">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-4" id="exampleModalLabel" style="color: oldlace;">Log In</h1>
+          <button type="button" data-bs-dismiss="modal" aria-label="Close" style="background:none; border: none;">
+            <img src="static/x.svg" >
+          </button>
         </div>
         <div class="modal-body">
           <form action="/login" method="post">
-            <label class="col-form-label lead" style="color: oldlace;">Username:</label>
-            <div class=" input-group mb-3">
-              <span class="input-group-text" id="usrnme">@</span>
+            <label class="col-form-label lead fs-5" style="color: oldlace;">Username:</label>
+            <div class=" input-group" style="margin-bottom: 30px;">
+              <span class="input-group-text" id="usrnme" style="background-color: lavender;">@</span>
               <input type="text" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"
-                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" aria-label="username" name="lnusername" required maxlength="15">
+                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px;" aria-label="username" name="lnusername" required maxlength="15">
             </div>
-            <label class="col-form-label lead" style="color: oldlace;">Password:</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="pswd">&#x1F512;</span>
+            <label class="col-form-label lead fs-5" style="color: oldlace;">Password:</label>
+            <div class="input-group" style="margin-bottom: 30px;">
+              <span class="input-group-text" id="pswd" style="background-color: lavender;">&#x1F512;</span>
               <input type="password" class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none" aria-label="password"
-                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" name="lnpswd" required maxlength="15">
+                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px;" name="lnpswd" required maxlength="15">
             </div>
-            <div class="modal-footer mt-5">
-              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+            <div class="modal-footer border-0">
+              <button type="submit" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
               <input class="btn btn-light" type="submit" value="Confirm">
             </div>
           </form>

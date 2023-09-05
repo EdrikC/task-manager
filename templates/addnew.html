@@ -1,43 +1,57 @@
-<div class="modal fade" id="addnewform" tabindex="-1" aria-labelledby="addnewform" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" style="background-image: url(static/task-page-bg.jpg); background-size: cover; ">
-      <div class="modal-header" style="background-color: transparent;">
-        <h1 class="modal-title fs-5 lead" id="formlabel" style="color: oldlace;">New Task</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/task-page/confirmed" method="post">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label lead" style="color: oldlace;">Title:</label>
-            <input type="text" class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none"
-                   style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px;" id="recipient-name" name="title" placeholder="e.g. Study for Calc final" required maxlength="250">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label lead" style="color: oldlace;">Description:</label>
-            <textarea class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none"
-                      style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px;" id="message-text" name="the_task" placeholder="e.g. Study sections 1, 2, and 3." required maxlength="1000"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label lead" style="color: oldlace;">Priority:</label>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Priority" id="inlineRadio1" value="1" required>
-              <label class="form-check-label" for="inlineRadio1" style="color: oldlace;">1</label>
+<head>
+  <style>
+    #bg-chnge{
+    animation: mymove 10s infinite;
+    }
+    @keyframes mymove {
+  50% {background-color: #a1c7d0;}
+    }
+  </style>
+</head>
+  <div class="modal fade" id="addnewform" tabindex="-1" aria-labelledby="addnewform" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style=" background-color:#a8aabf; padding: 15px;" id="bg-chnge">
+        <div class="modal-header border-0" style="background-color: transparent; margin-bottom: 20px;">
+          <h1 class="modal-title fs-5 lead fs-4 fw-bold" id="formlabel" style="color: oldlace;">New Task</h1>
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" style="background:none; border: none;">
+             <img src="static/x.svg" >
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="/task-page/confirmed" method="post">
+            <div style="margin-bottom: 30px;">
+              <label for="name" class="col-form-label lead fs-5 fw-semibold" style="color: oldlace;">Title:</label>
+              <input type="text" class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none"
+                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px; background-color: transparent; color: oldlace; border: double"
+                     id="name" name="title" placeholder="e.g. Study for Calc final" required maxlength="250">
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Priority" id="inlineRadio2" value="2">
-              <label class="form-check-label" for="inlineRadio2" style="color: oldlace;">2</label>
+            <div style="margin-bottom: 50px;">
+              <label for="message-text" class="col-form-label lead fs-5 fw-semibold" style="color: oldlace;">Description:</label>
+              <textarea class="form-control d-inline-flex focus-ring py-1 px-2 text-decoration-none"
+                        style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px; background-color: transparent; border: double; color: oldlace"
+                        id="message-text" name="the_task" placeholder="e.g. Study sections 1, 2, and 3." required maxlength="1000"></textarea>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Priority" id="inlineRadio3" value="3">
-              <label class="form-check-label" for="inlineRadio3" style="color: oldlace;">3</label>
+            <div class="mb-3">
+              <label class="col-form-label lead fs-5 fw-semibold" style="color: oldlace;">Priority:</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Priority" id="inlineRadio1" value="1" required>
+                <label class="form-check-label" for="inlineRadio1" style="color: oldlace;">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Priority" id="inlineRadio2" value="2">
+                <label class="form-check-label" for="inlineRadio2" style="color: oldlace;">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Priority" id="inlineRadio3" value="3">
+                <label class="form-check-label" for="inlineRadio3" style="color: oldlace;">3</label>
+              </div>
             </div>
-          </div>
-          <div class="modal-footer" style="background-color: transparent;">
-            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
-            <input class="btn btn-light" type="submit" value="Confirm">
-          </div>
-        </form>
+            <div class="modal-footer border-0" style="background-color: transparent;">
+              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+              <input class="btn btn-light" type="submit" value="Confirm">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>

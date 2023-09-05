@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<div class="modal fade" id="newusermodal" tabindex="-1" aria-labelledby="newusermodal" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-image: url(static/bg-purple.png); background-size: cover; background-attachment: local;">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="newusermodaltitle" style="color: oldlace;">Sign Up</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/signup" method="post">
-              <label class="col-form-label lead" style="color: oldlace;">Username:</label>
-            <div class=" input-group mb-3">
-              <span class="input-group-text" id="newusrnme">@</span>
-              <input type="text" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"
-                     style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" placeholder="Max 15 characters." aria-label="username" name="username" maxlength="15" required>
-            </div>
-              <label class="col-form-label lead" style="color: oldlace;">Password:</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="newpswd">&#x1F512;</span>
-              <input type="password" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"  style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px"
-                     placeholder="Max 15 characters." aria-label="password" name="pswd" maxlength="15" required>
-            </div>
-            <div class="modal-footer mt-5">
-              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
-              <input class="btn btn-light" type="submit" value="Confirm">
-            </div>
-          </form>
+  <html lang="en">
+  <head>
+  </head>
+  <div class="modal fade" id="newusermodal" tabindex="-1" aria-labelledby="newusermodal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-image: url(static/bg-purple.png); background-size: cover; background-attachment: local; padding:15px;">
+          <div class="modal-header border-0">
+            <h1 class="modal-title fs-4" id="newusermodaltitle" style="color: oldlace;">Sign Up</h1>
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" style="background:none; border: none;">
+            <img src="static/x.svg" >
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/signup" method="post">
+                <label class="col-form-label lead fs-5" style="color: oldlace;">Username:</label>
+              <div class=" input-group" style="margin-bottom: 30px;">
+                <span class="input-group-text" id="newusrnme">@</span>
+                <input type="text" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"
+                       style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px" placeholder="Max 15 characters." aria-label="username" name="username" maxlength="15" required>
+              </div>
+                <label class="col-form-label lead fs-5" style="color: oldlace;">Password:</label>
+              <div class="input-group" style="margin-bottom: 30px;">
+                <span class="input-group-text" id="newpswd">&#x1F512;</span>
+                <input type="password" class="form-control fst-italic d-inline-flex focus-ring py-1 px-2 text-decoration-none"  style="--bs-focus-ring-x: 10px; --bs-focus-ring-y: 10px; --bs-focus-ring-blur: 4px;"
+                       placeholder="Max 15 characters." aria-label="password" name="pswd" maxlength="15" required>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                <input class="btn btn-light" type="submit" value="Confirm">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</html>
+  </html>

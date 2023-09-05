@@ -25,6 +25,16 @@ def load_tasks(ui):
         return ls_tasks
 
 
+def load_tasks_by_priority(ui):
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from tasks where ui = :ui ORDER BY priority ASC"), parameters=dict(ui=ui))
+        ls_tasks = []
+        for row in result:
+            row_as_dict = row._mapping
+            ls_tasks.append(row_as_dict)
+        return ls_tasks
+
+
 # Returns a task identified by its ID. Return type dict.
 def load_task_from_db(id):
     with engine.connect() as conn:
@@ -93,6 +103,3 @@ def get_username_from_id(id):
         result = conn.execute(query, parameters=dict(id=id))
         name = result.fetchone()
         return str(name[0])
-
-
-# print(type(get_username_from_id('1')))

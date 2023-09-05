@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import secrets
 from database import load_tasks, task_to_db, del_task, new_user, id_is_unique, \
-    get_userinfo_by_username, get_username_from_id
+    get_userinfo_by_username, get_username_from_id, load_tasks_by_priority
 from flask_login import LoginManager, login_user, login_required, UserMixin, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
 login_manager = LoginManager(app)
@@ -97,15 +98,28 @@ def main_page():
     return render_template('index.html')
 
 
-@app.route('/task-page')
+@app.route('/task-page', methods=['GET', 'POST'])
 @login_required
 def task_page():
     user_id = current_user.get_id()
-    tasks = load_tasks(user_id)
+    action = request.form.get('action')
+    sort_option = request.form.get('sort_option')
+
+    if action == 'delete':
+        tsk_id = request.form.get('id')
+        del_task(tsk_id)
+
+    if sort_option == 'newest':
+        tasks = load_tasks(user_id)
+    elif sort_option == 'priority':
+        tasks = load_tasks_by_priority(user_id)
+    else:
+        tasks = load_tasks(user_id)
+
     return render_template('task-page.html', tsk=tasks)
 
 
-@app.route('/task-page/confirmed', methods=['post'])
+@app.route('/task-page/confirmed', methods=['POST'])
 @login_required
 def confirmed_tsk():
     data = request.form
@@ -116,7 +130,7 @@ def confirmed_tsk():
     return redirect(url_for('task_page'))
 
 
-@app.route('/task-page/del', methods=['post'])
+@app.route('/task-page/del', methods=['POST'])
 @login_required
 def delete_task():
     data = request.form

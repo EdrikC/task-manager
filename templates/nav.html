@@ -23,7 +23,7 @@
           {% endif %}
       </ul>
       {% if not current_user.is_authenticated %}
-      <button type="button" class="btn btn-outline-light font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</button>
+      <button type="button" class="btn btn-outline-light font-monospace" style="margin-right: 20px;" data-bs-toggle="modal" data-bs-target="#loginmodal">Log In</button>
        {% endif %}
         <form action="/logout" method="POST">
           {% if current_user.is_authenticated %}
