@@ -3,5 +3,4 @@ Werkzeug~=2.2.2
 SQLAlchemy~=1.4.45
 python-dotenv<=1.0.0
 flask_login
-python-dotenv mysqlclient
-
+python-dotenv
