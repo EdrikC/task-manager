@@ -6,8 +6,7 @@ load_dotenv()
 db_connect_string = os.getenv('DB_STR')
 
 # Creating the engine.
-engine = create_engine(db_connect_string, connect_args={"ssl_ca": "/etc/ssl/cert.pem",
-                                                        "ssl_verify_identity": True})
+engine = create_engine(db_connect_string, connect_args={"ca": "/etc/ssl/cert.pem"})
 
 
 # Loads the tasks rendered in task-page.html given the user's id. (Returned as a list of dicts)
