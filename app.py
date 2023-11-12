@@ -46,7 +46,7 @@ def sign_up():
         data = request.form
         username = data.get('username')
         pswd = data.get('pswd')
-        hash_pswd = generate_password_hash(pswd, method='pbkdf2')
+        hash_pswd = generate_password_hash(pswd, method='pbkdf2:sha256', salt_length=16)
 
         if id_is_unique(username):
             new_user(username, hash_pswd)  # Adds the user's username and (hashed) pswd to DB.

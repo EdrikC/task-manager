@@ -1,6 +1,6 @@
 Flask~=2.2.2
-Werkzeug~=2.2.2
+Werkzeug~=2.3.6
 SQLAlchemy~=1.4.45
 python-dotenv<=1.0.0
-flask_login
-pymysql
+Flask-Login
+PyMySQL
