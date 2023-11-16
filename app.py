@@ -4,9 +4,9 @@ from database import load_tasks, task_to_db, del_task, new_user, id_is_unique, \
     get_userinfo_by_username, get_username_from_id, load_tasks_by_priority
 from flask_login import LoginManager, login_user, login_required, UserMixin, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from logging import FileHandler,WARNING
+from logging import FileHandler, WARNING
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 app.secret_key = secrets.token_hex(32)
 login_manager = LoginManager(app)
 file_handler = FileHandler('errorlog.txt')
