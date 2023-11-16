@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-db_connect_string = os.getenv('DB_STR')
+db_connect_string = os.environ.get('DB_STR')
 
 # Creating the engine.
 engine = create_engine(db_connect_string, connect_args={
