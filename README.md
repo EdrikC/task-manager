@@ -1,2 +1,2 @@
 # task-manager
-My first project using databases.
+First fully implemented full-stack project using SQLAlchemy and MySQL for the backend.
